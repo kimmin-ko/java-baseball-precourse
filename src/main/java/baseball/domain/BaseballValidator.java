@@ -2,11 +2,11 @@ package baseball.domain;
 
 import java.util.*;
 
-public final class NumberValidator {
+public final class BaseballValidator {
 
     private static final int NUMBER_LENGTH = 3;
 
-    private NumberValidator() {
+    private BaseballValidator() {
     }
 
     public static void validate(String inputNumber) {
