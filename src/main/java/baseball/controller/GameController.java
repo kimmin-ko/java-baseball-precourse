@@ -29,6 +29,7 @@ public class GameController {
      * 야구 게임을 시작한다.
      */
     public void startGame() {
+        List<Integer> computerNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
 
         String inputNumber;
         do {
@@ -36,19 +37,19 @@ public class GameController {
             BaseballValidator.validate(inputNumber);
 
             List<Integer> inputNumbers = splitToIntegerList(inputNumber);
-            List<Integer> computerNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
 
             BaseballReferee referee = new BaseballReferee(computerNumbers, inputNumbers);
             referee.judgment();
 
             BaseballResult result = referee.getResult();
-            System.out.println("result = " + result);
+            view.printResult(result);
 
-        } while (!inputNumber.equals("2"));
+        } while (true);
     }
 
     /**
      * 사용자가 입력한 숫자를 List<Integer>로 파싱한다.
+     *
      * @param inputNumber 사용자가 입력한 숫자의 String 타입
      * @return 사용자가 입력한 숫자의 List<Integer> 타입
      */

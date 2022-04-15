@@ -17,6 +17,9 @@ public class BaseballReferee {
     private final BaseballResult result;
 
     public BaseballReferee(List<Integer> computerNumbers, List<Integer> inputNumbers) {
+        if (computerNumbers.size() != 3 || inputNumbers.size() != 3)
+            throw new IllegalArgumentException("컴퓨터의 숫자 또는 사용자 입력 숫자의 길이는 3이어야 합니다.");
+
         this.computerNumbers = computerNumbers;
         this.inputNumbers = inputNumbers;
         this.result = new BaseballResult();
@@ -31,6 +34,10 @@ public class BaseballReferee {
         judgmentStrikeMatch();
     }
 
+    /**
+     * 게임 결과를 반환한다.
+     * @return 게임 결과
+     */
     public BaseballResult getResult() {
         return this.result;
     }
