@@ -3,6 +3,12 @@ package baseball.view;
 import baseball.domain.BaseballResult;
 import camp.nextstep.edu.missionutils.Console;
 
+/**
+ * 사용자에게 게임 안내를 콘솔로 출력하고 필요한 값을 입력받는다.
+ *
+ * @author : kimmin
+ * @since : 2022-04-15 오후 22:31
+ */
 public class ConsoleView implements View {
 
     @Override
@@ -12,7 +18,14 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void printResult(BaseballResult result) {
+    public void showResult(BaseballResult result) {
         System.out.println(result);
+    }
+
+    @Override
+    public String requestGameOption() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return Console.readLine();
     }
 }

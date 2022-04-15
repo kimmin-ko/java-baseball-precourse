@@ -12,6 +12,14 @@ public class BaseballResult {
     private int strike;
 
     /**
+     * 사용자가 입력한 숫자가 정답인지 확인한다.
+     * @return true: 정답, false: 오답
+     */
+    public boolean isNotAnswer() {
+        return this.strike != 3;
+    }
+
+    /**
      * 총 일치하는 숫자의 개수 변경
      */
     void changeTotal(int total) {

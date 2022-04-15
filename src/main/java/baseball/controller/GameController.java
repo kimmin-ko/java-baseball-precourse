@@ -29,22 +29,34 @@ public class GameController {
      * 야구 게임을 시작한다.
      */
     public void startGame() {
-        List<Integer> computerNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
-
-        String inputNumber;
+        String gameOption;
         do {
-            inputNumber = view.requestInputNumber();
+            List<Integer> computerNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+
+            compareNumbers(computerNumbers);
+
+            gameOption = view.requestGameOption();
+            BaseballValidator.validateGameOption(gameOption);
+        } while (gameOption.equals(RESTART));
+    }
+
+    /**
+     * 컴퓨터의 숫자와 사용자의 숫자를 비교하여 결과를 출력한다.
+     * @param computerNumbers 컴퓨터가 생성한 숫자
+     */
+    private void compareNumbers(List<Integer> computerNumbers) {
+        BaseballResult result;
+        do {
+            String inputNumber = view.requestInputNumber();
             BaseballValidator.validate(inputNumber);
 
             List<Integer> inputNumbers = splitToIntegerList(inputNumber);
-
             BaseballReferee referee = new BaseballReferee(computerNumbers, inputNumbers);
             referee.judgment();
 
-            BaseballResult result = referee.getResult();
-            view.printResult(result);
-
-        } while (true);
+            result = referee.getResult();
+            view.showResult(result);
+        } while (result.isNotAnswer());
     }
 
     /**

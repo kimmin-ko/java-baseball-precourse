@@ -17,7 +17,7 @@ public class BaseballReferee {
     private final BaseballResult result;
 
     public BaseballReferee(List<Integer> computerNumbers, List<Integer> inputNumbers) {
-        if (computerNumbers.size() != 3 || inputNumbers.size() != 3)
+        if (hasNotThreeSizeOf(computerNumbers) || hasNotThreeSizeOf(inputNumbers))
             throw new IllegalArgumentException("컴퓨터의 숫자 또는 사용자 입력 숫자의 길이는 3이어야 합니다.");
 
         this.computerNumbers = computerNumbers;
@@ -73,4 +73,11 @@ public class BaseballReferee {
             result.increaseStrike();
     }
 
+    /**
+     * @param numbers 숫자 리스트
+     * @return true: 리스트의 size가 3이 아님, false: 리스트의 size가 3임
+     */
+    private boolean hasNotThreeSizeOf(List<Integer> numbers) {
+        return numbers.size() != 3;
+    }
 }
