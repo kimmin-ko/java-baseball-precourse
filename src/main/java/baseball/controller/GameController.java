@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.domain.BaseballReferee;
 import baseball.domain.BaseballResult;
+import baseball.domain.BaseballUserOption;
 import baseball.domain.BaseballValidator;
 import baseball.view.View;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -11,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static baseball.domain.BaseballOption.*;
+import static baseball.domain.BaseballNumberRule.*;
 
 /**
  * 게임 컨트롤러
@@ -29,21 +30,22 @@ public class GameController {
 
     /**
      * 야구 게임을 시작한다.
+     * 사용자가 정답을 맞추면 사용자의 선택에 따라 게임 재시작 또는 종료한다.
      */
     public void startGame() {
-        String gameOption;
+        BaseballUserOption inputBaseballOption;
         do {
             List<Integer> computerNumbers = generateUniqueNumbers();
             compareNumbers(computerNumbers);
 
-            gameOption = view.requestGameOption();
-            BaseballValidator.validateGameOption(gameOption);
-        } while (gameOption.equals(RESTART));
+            inputBaseballOption = view.requestBaseballOption();
+        } while (inputBaseballOption.isRestart());
         view.showEndMessage();
     }
 
     /**
      * 컴퓨터의 숫자와 사용자의 숫자를 비교하여 결과를 출력한다.
+     *
      * @param computerNumbers 컴퓨터가 생성한 숫자
      */
     private void compareNumbers(List<Integer> computerNumbers) {
@@ -63,12 +65,13 @@ public class GameController {
 
     /**
      * 중복되지 않은 세 자리 숫자를 생성한다.
+     *
      * @return 세자리 숫자
      */
     private List<Integer> generateUniqueNumbers() {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        while (uniqueNumbers.size() != NUMBER_COUNT)
-            uniqueNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+        while (uniqueNumbers.size() != NUMBER_COUNT.value())
+            uniqueNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER.value(), MAX_NUMBER.value()));
         return new ArrayList<>(uniqueNumbers);
     }
 

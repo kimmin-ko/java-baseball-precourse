@@ -1,6 +1,7 @@
 package baseball.view;
 
 import baseball.domain.BaseballResult;
+import baseball.domain.BaseballUserOption;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -23,10 +24,10 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public String requestGameOption() {
+    public BaseballUserOption requestBaseballOption() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        return Console.readLine();
+        return BaseballUserOption.of(Console.readLine());
     }
 
     @Override

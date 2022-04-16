@@ -10,6 +10,7 @@ import java.util.List;
  * @since : 2022-04-14 오후 21:48
  */
 public class BaseballReferee {
+
     public static final int SUM_NUMBERS_LENGTH = 6;
 
     private final List<Integer> computerNumbers;
