@@ -42,8 +42,8 @@ class BaseballResultTest {
     }
 
     @Test
-    @DisplayName("")
-    void test() {
+    @DisplayName("총 일치 개수 - 스트라이크 개수는 볼의 개수이며, 스트라이크 개수가 3을 초과하면 예외가 발생한다.")
+    void ball_count_and_increase_strike() {
         // given
         int total = 3;
 
