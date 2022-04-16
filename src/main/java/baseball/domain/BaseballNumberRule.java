@@ -9,7 +9,8 @@ package baseball.domain;
 public enum BaseballNumberRule {
     MIN_NUMBER(1, "숫자 최솟값"),
     MAX_NUMBER(9, "숫자 최댓값"),
-    NUMBER_COUNT(3, "숫자 개수");
+    NUMBER_COUNT(3, "숫자 개수"),
+    ANSWER_COUNT(3, "정답 개수");
 
     private final int value;
     private final String label;

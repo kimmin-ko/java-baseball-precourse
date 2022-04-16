@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import static baseball.domain.BaseballNumberRule.ANSWER_COUNT;
+
 /**
  * 컴퓨터 숫자와 사용자가 입력한 숫자 비교에 대한 결과 값
  *
@@ -17,21 +19,47 @@ public class BaseballResult {
      * @return true: 정답, false: 오답
      */
     public boolean isNotAnswer() {
-        return this.strike != 3;
+        return this.strike != ANSWER_COUNT.value();
     }
 
     /**
      * 총 일치하는 숫자의 개수 변경
+     * 변경하려는 값이 정답 개수보다 많으면 예외를 발생시킨다.
      */
     void changeTotal(int total) {
+        if (isTotalGreaterThanAnswerCount(total))
+            throw new IllegalArgumentException("총 일치 개수가 정답 개수보다 많을 수 없습니다.");
+
         this.total = total;
     }
 
     /**
-     * 스트라이크 개수 증가
+     * 스트라이크 개수를 증가시킨다.
+     * 이미 3이상이면 예외를 발생시킨다.
      */
     void increaseStrike() {
+        if (isStrikeGoeAnswerCount())
+            throw new IllegalStateException("스트라이크를 더이상 증가시킬 수 없습니다.");
+
         this.strike++;
+    }
+
+    /**
+     * 변경하려는 총 일치 개수가 정답 개수 초과인지 확인한다.
+     *
+     * @return true: 초과, false: 이하
+     */
+    private boolean isTotalGreaterThanAnswerCount(int total) {
+        return total > ANSWER_COUNT.value();
+    }
+
+    /**
+     * 스트라이크 개수가 정답 개수 이상인지 확인한다.
+     *
+     * @return true: 이상, false: 미만
+     */
+    private boolean isStrikeGoeAnswerCount() {
+        return this.strike >= ANSWER_COUNT.value();
     }
 
     /**
