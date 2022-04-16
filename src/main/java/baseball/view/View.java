@@ -12,4 +12,5 @@ public interface View {
     String requestInputNumber();
     void showResult(BaseballResult result);
     String requestGameOption();
+    void showEndMessage();
 }

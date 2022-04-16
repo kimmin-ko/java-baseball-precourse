@@ -7,7 +7,9 @@ import baseball.view.View;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static baseball.domain.BaseballOption.*;
 
@@ -31,13 +33,13 @@ public class GameController {
     public void startGame() {
         String gameOption;
         do {
-            List<Integer> computerNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
-
+            List<Integer> computerNumbers = generateUniqueNumbers();
             compareNumbers(computerNumbers);
 
             gameOption = view.requestGameOption();
             BaseballValidator.validateGameOption(gameOption);
         } while (gameOption.equals(RESTART));
+        view.showEndMessage();
     }
 
     /**
@@ -57,6 +59,17 @@ public class GameController {
             result = referee.getResult();
             view.showResult(result);
         } while (result.isNotAnswer());
+    }
+
+    /**
+     * 중복되지 않은 세 자리 숫자를 생성한다.
+     * @return 세자리 숫자
+     */
+    private List<Integer> generateUniqueNumbers() {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        while (uniqueNumbers.size() != NUMBER_COUNT)
+            uniqueNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+        return new ArrayList<>(uniqueNumbers);
     }
 
     /**

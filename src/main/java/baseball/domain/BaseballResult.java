@@ -13,6 +13,7 @@ public class BaseballResult {
 
     /**
      * 사용자가 입력한 숫자가 정답인지 확인한다.
+     *
      * @return true: 정답, false: 오답
      */
     public boolean isNotAnswer() {
@@ -63,6 +64,7 @@ public class BaseballResult {
 
     /**
      * 총 일치하는 숫자의 개수에서 스트라이크의 개수를 빼면 볼의 개수를 얻을 수 있다.
+     *
      * @return 볼 개수
      */
     private int getBall() {
@@ -71,6 +73,7 @@ public class BaseballResult {
 
     /**
      * 일치한 숫자의 개수가 0개이면 포볼이다.
+     *
      * @return true: 포볼, false: 포볼 아님
      */
     private boolean isFourBall() {
@@ -79,6 +82,7 @@ public class BaseballResult {
 
     /**
      * 게임 결과를 문자열로 반환
+     *
      * @return 게임 결과
      */
     @Override
@@ -88,16 +92,11 @@ public class BaseballResult {
         String strikeStr = "스트라이크";
         String ballStr = "볼";
 
-        if (isFourBall())
-            result.append(nothingStr);
-        else if (hasBoth())
-            result.append(getBall()).append(ballStr).append(" ").append(getStrike()).append(strikeStr);
-        else if (hasStrike())
-            result.append(getStrike()).append(strikeStr);
-        else if (hasBall())
-            result.append(getBall()).append(ballStr);
-        else
-            throw new IllegalStateException("숫자 판단 로직이 잘못되었습니다.");
+        if (isFourBall()) result.append(nothingStr);
+        else if (hasBoth()) result.append(getBall()).append(ballStr).append(" ").append(getStrike()).append(strikeStr);
+        else if (hasStrike()) result.append(getStrike()).append(strikeStr);
+        else if (hasBall()) result.append(getBall()).append(ballStr);
+        else throw new IllegalStateException("숫자 판단 로직이 잘못되었습니다.");
 
         return result.toString();
     }
