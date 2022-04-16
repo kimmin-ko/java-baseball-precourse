@@ -11,7 +11,7 @@ class BaseballValidatorTest {
 
     @DisplayName("사용자 입력 값 검증 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "1", "12", "1234", "char", "112"})
+    @ValueSource(strings = {"", " ", "1", "12", "1234", "char", "112", "012"})
     void test(String inputNumber) {
         // when then
         assertThatThrownBy(() -> BaseballValidator.validate(inputNumber))

@@ -23,7 +23,17 @@ public final class BaseballValidator {
         requiredNonNull(inputNumber);
         lengthMustBeThree(inputNumber);
         mustBeNumber(inputNumber);
+        requiredNotContainsZero(inputNumber);
         nonDuplication(inputNumber);
+    }
+
+    /**
+     * 사용자가 0을 입력하면 예외를 발생시킨다.
+     * @param inputNumber 사용자가 입력한 숫자
+     */
+    private static void requiredNotContainsZero(String inputNumber) {
+        if (inputNumber.contains("0"))
+            throw new IllegalArgumentException("입력 값에 0이 포함될 수 없습니다.");
     }
 
     /**
