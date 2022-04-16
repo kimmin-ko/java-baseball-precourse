@@ -117,20 +117,16 @@ public class BaseballResult {
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
         if (isFourBall()) {
-            result.append("낫싱");
+            return "낫싱";
         } else if (hasBoth()) {
-            result.append(getBall()).append("볼").append(" ").append(getStrike()).append("스트라이크");
+            return String.format("%d볼 %d스트라이크", getBall(), getStrike());
         } else if (hasStrike()) {
-            result.append(getStrike()).append("스트라이크");
+            return String.format("%d스트라이크", getStrike());
         } else if (hasBall()) {
-            result.append(getBall()).append("볼");
-        } else {
-            throw new IllegalStateException("숫자 판단 로직이 잘못되었습니다.");
+            return String.format("%d볼", getBall());
         }
 
-        return result.toString();
+        return String.format("게임 판단 로직이 잘못되었습니다. 총: %d, 스트라이크: %s, 볼: %s", this.total, getStrike(), getBall());
     }
 }
