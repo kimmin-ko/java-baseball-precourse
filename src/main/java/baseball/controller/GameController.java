@@ -12,7 +12,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static baseball.domain.BaseballNumberRule.*;
+import static baseball.domain.BaseballNumberRule.MIN_NUMBER;
+import static baseball.domain.BaseballNumberRule.MAX_NUMBER;
+import static baseball.domain.BaseballNumberRule.NUMBER_COUNT;
 
 /**
  * 게임 컨트롤러

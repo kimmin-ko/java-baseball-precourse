@@ -1,6 +1,9 @@
 package baseball.domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 사용자 입력 값 검증기
@@ -17,6 +20,7 @@ public final class BaseballValidator {
 
     /**
      * 사용자가 입력한 세 자리 숫자를 검증한다.
+     *
      * @param inputNumber 사용자가 입력한 세 자리 숫자
      */
     public static void validate(String inputNumber) {
@@ -29,6 +33,7 @@ public final class BaseballValidator {
 
     /**
      * 사용자가 0을 입력하면 예외를 발생시킨다.
+     *
      * @param inputNumber 사용자가 입력한 숫자
      */
     private static void requiredNotContainsZero(String inputNumber) {
@@ -38,6 +43,7 @@ public final class BaseballValidator {
 
     /**
      * 값이 비어있거나 널이면 예외를 발생시킨다.
+     *
      * @param str 사용자가 입력한 값
      */
     private static void requiredNonNull(String str) {
@@ -55,6 +61,7 @@ public final class BaseballValidator {
 
     /**
      * 값의 길이가 3이 아니면 예외를 발생시킨다.
+     *
      * @param inputNumber 사용자가 입력한 값
      */
     private static void lengthMustBeThree(String inputNumber) {
@@ -72,6 +79,7 @@ public final class BaseballValidator {
 
     /**
      * 사용자가 입력한 값에 문자가 포함되어있으면 예외를 발생시킨다.
+     *
      * @param inputNumber 사용자가 입력한 값
      */
     private static void assertNumber(String inputNumber) {
@@ -84,6 +92,7 @@ public final class BaseballValidator {
 
     /**
      * 사용자가 입력한 값이 중복되었으면 예외를 발생시킨다.
+     *
      * @param inputNumber 사용자가 입력한 값
      */
     private static void assertUnique(String inputNumber) {
