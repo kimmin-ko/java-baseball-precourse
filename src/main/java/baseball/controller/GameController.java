@@ -55,7 +55,7 @@ public class GameController {
             String inputNumber = view.requestInputNumber();
             BaseballValidator.validate(inputNumber);
 
-            List<Integer> inputNumbers = splitToIntegerList(inputNumber);
+            List<Integer> inputNumbers = parseToIntegerList(inputNumber);
             BaseballReferee referee = new BaseballReferee(computerNumbers, inputNumbers);
             referee.judgment();
 
@@ -71,7 +71,7 @@ public class GameController {
      */
     private List<Integer> generateUniqueNumbers() {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        while (uniqueNumbers.size() != NUMBER_COUNT.value())
+        while (uniqueNumbers.size() < NUMBER_COUNT.value())
             uniqueNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER.value(), MAX_NUMBER.value()));
         return new ArrayList<>(uniqueNumbers);
     }
@@ -82,7 +82,7 @@ public class GameController {
      * @param inputNumber 사용자가 입력한 숫자의 String 타입
      * @return 사용자가 입력한 숫자의 List<Integer> 타입
      */
-    private List<Integer> splitToIntegerList(String inputNumber) {
+    private List<Integer> parseToIntegerList(String inputNumber) {
         List<Integer> result = new ArrayList<>();
 
         String[] inputNumbers = inputNumber.split("");
