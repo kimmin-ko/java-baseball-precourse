@@ -37,8 +37,7 @@ public enum BaseballUserOption {
     private static final Map<String, BaseballUserOption> valueOptionMap = new HashMap<>();
 
     static {
-        BaseballUserOption[] options = BaseballUserOption.values();
-        for (BaseballUserOption option : options) {
+        for (BaseballUserOption option : BaseballUserOption.values()) {
             String key = option.value();
             valueOptionMap.put(key, option);
         }
@@ -52,8 +51,9 @@ public enum BaseballUserOption {
      * @return BaseballUserOption
      */
     public static BaseballUserOption of(String value) {
-        if (!valueOptionMap.containsKey(value))
+        if (!valueOptionMap.containsKey(value)) {
             throw new IllegalArgumentException("사용자가 잘못된 옵션을 입력하였습니다. : " + value);
+        }
 
         return valueOptionMap.get(value);
     }

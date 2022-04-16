@@ -37,8 +37,9 @@ public final class BaseballValidator {
      * @param inputNumber 사용자가 입력한 숫자
      */
     private static void requiredNotContainsZero(String inputNumber) {
-        if (inputNumber.contains("0"))
+        if (inputNumber.contains("0")) {
             throw new IllegalArgumentException("입력 값에 0이 포함될 수 없습니다.");
+        }
     }
 
     /**
@@ -47,8 +48,9 @@ public final class BaseballValidator {
      * @param str 사용자가 입력한 값
      */
     private static void requiredNonNull(String str) {
-        if (isEmptyStr(str))
+        if (isEmptyStr(str)) {
             throw new IllegalArgumentException("입력 값이 비어있습니다.");
+        }
     }
 
     /**
@@ -65,8 +67,9 @@ public final class BaseballValidator {
      * @param inputNumber 사용자가 입력한 값
      */
     private static void lengthMustBeThree(String inputNumber) {
-        if (isNotThree(inputNumber.length()))
+        if (isNotThree(inputNumber.length())) {
             throw new IllegalArgumentException("입력 값의 길이가 3이어야 합니다. : " + inputNumber);
+        }
     }
 
     /**
@@ -99,8 +102,9 @@ public final class BaseballValidator {
         List<String> inputNumberList = Arrays.asList(inputNumber.split(""));
         HashSet<String> inputNumberSet = new HashSet<>(inputNumberList);
 
-        if (inputNumberList.size() != inputNumberSet.size())
+        if (inputNumberList.size() != inputNumberSet.size()) {
             throw new IllegalArgumentException("입력 값이 중복 되었습니다. : " + inputNumber);
+        }
     }
 
 }

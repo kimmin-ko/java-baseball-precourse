@@ -27,8 +27,9 @@ public class BaseballResult {
      * 변경하려는 값이 정답 개수보다 많으면 예외를 발생시킨다.
      */
     void changeTotal(int total) {
-        if (isTotalGreaterThanAnswerCount(total))
+        if (isTotalGreaterThanAnswerCount(total)) {
             throw new IllegalArgumentException("총 일치 개수가 정답 개수보다 많을 수 없습니다.");
+        }
 
         this.total = total;
     }
@@ -38,8 +39,9 @@ public class BaseballResult {
      * 이미 3이상이면 예외를 발생시킨다.
      */
     void increaseStrike() {
-        if (isStrikeGoeAnswerCount())
+        if (isStrikeGoeAnswerCount()) {
             throw new IllegalStateException("스트라이크를 더이상 증가시킬 수 없습니다.");
+        }
 
         this.strike++;
     }
@@ -116,15 +118,18 @@ public class BaseballResult {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        String nothingStr = "낫싱";
-        String strikeStr = "스트라이크";
-        String ballStr = "볼";
 
-        if (isFourBall()) result.append(nothingStr);
-        else if (hasBoth()) result.append(getBall()).append(ballStr).append(" ").append(getStrike()).append(strikeStr);
-        else if (hasStrike()) result.append(getStrike()).append(strikeStr);
-        else if (hasBall()) result.append(getBall()).append(ballStr);
-        else throw new IllegalStateException("숫자 판단 로직이 잘못되었습니다.");
+        if (isFourBall()) {
+            result.append("낫싱");
+        } else if (hasBoth()) {
+            result.append(getBall()).append("볼").append(" ").append(getStrike()).append("스트라이크");
+        } else if (hasStrike()) {
+            result.append(getStrike()).append("스트라이크");
+        } else if (hasBall()) {
+            result.append(getBall()).append("볼");
+        } else {
+            throw new IllegalStateException("숫자 판단 로직이 잘못되었습니다.");
+        }
 
         return result.toString();
     }

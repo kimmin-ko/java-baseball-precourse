@@ -18,8 +18,9 @@ public class BaseballReferee {
     private final BaseballResult result;
 
     public BaseballReferee(List<Integer> computerNumbers, List<Integer> inputNumbers) {
-        if (hasNotThreeSizeOf(computerNumbers) || hasNotThreeSizeOf(inputNumbers))
+        if (hasNotThreeSizeOf(computerNumbers) || hasNotThreeSizeOf(inputNumbers)) {
             throw new IllegalArgumentException("컴퓨터의 숫자 또는 사용자 입력 숫자의 길이는 3이어야 합니다.");
+        }
 
         this.computerNumbers = computerNumbers;
         this.inputNumbers = inputNumbers;
@@ -58,8 +59,9 @@ public class BaseballReferee {
      * 스트라이크가 몇 개 있는지 판단한다.
      */
     private void judgmentStrikeMatch() {
-        for (int i = 0; i < computerNumbers.size(); i++)
+        for (int i = 0; i < computerNumbers.size(); i++) {
             matchStrike(computerNumbers, inputNumbers, i);
+        }
     }
 
     /**
@@ -70,8 +72,9 @@ public class BaseballReferee {
      * @param i 숫자의 순번
      */
     private void matchStrike(List<Integer> computerNumbers, List<Integer> inputNumbers, int i) {
-        if (computerNumbers.get(i).equals(inputNumbers.get(i)))
+        if (computerNumbers.get(i).equals(inputNumbers.get(i))) {
             result.increaseStrike();
+        }
     }
 
     /**
